@@ -1,0 +1,194 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --orange: #F2C14E;
+    --winning-blocks: #2d414b;
+    --bg-gradient: linear-gradient(135deg, #1F1C2C, #928DAB);
+    --box-shadow: rgba(0, 0, 0, 0.5) 0px 8px 20px;
+    --button-hover: linear-gradient(135deg, #FFAF7B, #D76D77, #3A1C71);
+    --winning-line-color: #A52A2A; /* Updated to brown color */
+}
+
+body {
+    color: var(--orange);
+    background: url('static/tic-tac-toe.jpg');
+    font-family: 'Finger Paint', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 64px;
+    text-transform: uppercase;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+    letter-spacing: 5px;
+    color: #fff;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#gameboard {
+    width: 320px;
+    height: 320px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    background-color: darkgrey;
+    box-shadow: var(--box-shadow);
+}
+
+.box {
+    height: 100px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--orange);
+    font-size: 100px;
+    border-right: 2px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.box:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    background-color: cyan;
+}
+
+.box:nth-child(3n) {
+    border-right: none;
+}
+
+.box:nth-child(6) ~ .box {
+    border-bottom: none;
+}
+
+/* Winning Block Style */
+.box.winning {
+    background-color: var(--winning-blocks) !important;
+    animation: highlight 1s infinite alternate;
+}
+
+@keyframes highlight {
+    0% {
+        background-color: var(--winning-blocks);
+    }
+    100% {
+        background-color: #FF8C00;
+    }
+}
+
+/* Buttons */
+button {
+    padding: 15px 30px;
+    border-radius: 50px;
+    background: var(--orange);
+    color: #333;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: var(--box-shadow);
+    transition: 0.3s ease;
+    margin-top: 50px;
+}
+
+button:hover {
+    background: var(--button-hover);
+    color: #fff;
+    transform: translateY(-5px);
+    cursor: pointer;
+}
+
+/* Horizontal line */
+.horizontal-line {
+    position: relative;
+}
+
+.horizontal-line::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: var(--winning-line-color);
+    transform: translateY(-50%);
+    box-shadow: var(--box-shadow);
+}
+
+/* Vertical line */
+.vertical-line {
+    position: relative;
+}
+
+.vertical-line::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 5px;
+    height: 100%;
+    background-color: var(--winning-line-color);
+    transform: translateX(-50%);
+    box-shadow: var(--box-shadow);
+}
+
+/* Diagonal line (top-left to bottom-right) */
+/* Diagonal line (top-left to bottom-right) */
+.diagonal-line-right {
+    position: relative;
+}
+
+.diagonal-line-right::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent; /* Remove background color */
+    border-left: 5px solid var(--winning-line-color);
+    border-bottom: 5px solid var(--winning-line-color);
+    transform: rotate(45deg);
+    transform-origin: 0% 100%; /* Start from bottom-left */
+    width: 141.42%; /* Ensure diagonal covers from one corner to another */
+    height: 0; /* Height is adjusted by border */
+    box-shadow: var(--box-shadow);
+}
+
+/* Diagonal line (top-right to bottom-left) */
+.diagonal-line-left {
+    position: relative;
+}
+
+.diagonal-line-left::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent; /* Remove background color */
+    border-right: 5px solid var(--winning-line-color);
+    border-bottom: 5px solid var(--winning-line-color);
+    transform: rotate(-45deg);
+    transform-origin: 100% 100%; /* Start from bottom-right */
+    width: 200%; /* Ensure diagonal covers from one corner to another */
+    height: 0; /* Height is adjusted by border */
+    box-shadow: var(--box-shadow);
+}
