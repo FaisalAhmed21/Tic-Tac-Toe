@@ -25,11 +25,14 @@ function boxClicked(e) {
             playerText.innerHTML = `Player ${currentPlayer} has won!`;
             let winning_blocks = winner.combo;
 
+            // Remove content of all non-winning boxes
             boxes.forEach((box, index) => {
                 if (!winning_blocks.includes(index)) {
                     box.innerText = ''; // Remove text from non-winning boxes
                 }
             });
+
+            // Add lines to the winning combination
             winning_blocks.forEach(box => {
                 if (winner.type === 'horizontal') {
                     boxes[box].classList.add('horizontal-line');
@@ -42,7 +45,7 @@ function boxClicked(e) {
                 }
             });
 
-            return;
+            return; // End the game after winning
         }
 
         currentPlayer = currentPlayer === X_TEXT ? O_TEXT : X_TEXT;
@@ -56,8 +59,8 @@ const winningCombos = [
     [0, 3, 6],
     [1, 4, 7],
     [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6] 
+    [0, 4, 8], // Diagonal from top-left to bottom-right
+    [2, 4, 6]  // Diagonal from top-right to bottom-left
 ];
 
 function playerHasWon() {
@@ -99,3 +102,4 @@ function restart() {
 }
 
 startGame();
+
