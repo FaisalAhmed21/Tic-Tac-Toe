@@ -12,4 +12,4 @@ Have fun!
 
 Game link:
 
-https://faisalahmed21.github.io/Tic-Tac-Toe/
+
