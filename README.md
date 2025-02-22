@@ -10,6 +10,4 @@ HOW TO USE THE CODE:
 
 Have fun!
 
-Game link:
-
 
